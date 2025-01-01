@@ -1,10 +1,17 @@
-
 import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+
+# Load pre-trained model and scaler
+try:
+    model = joblib.load('GB.joblib')  # Ensure the model file is in the same directory
+    scaler = joblib.load('scaler.joblib')  # Ensure the scaler file is in the same directory
+except FileNotFoundError:
+    st.error("Model or scaler file not found. Ensure 'GB.joblib' and 'scaler.joblib' are present in the app directory.")
+    st.stop()
 
 st.title("Renewable Energy Consumption Prediction")
 st.write("Adjust the sliders to change the input features and see the impact on predicted energy consumption.")
@@ -62,8 +69,6 @@ predictions = model.predict(scaled_sample_inputs)
 predictions = np.expm1(predictions)
 
 # Plot the predictions
-import matplotlib.pyplot as plt
-
 fig, ax = plt.subplots()
 ax.plot(scaling_factors, predictions, label='Predicted Energy Consumption', color='blue')
 ax.set_xlabel("Scaling Factor for Installed Capacity (MW)")
@@ -124,4 +129,3 @@ ax.set_title(f"Interaction between {feature_1} and {feature_2}")
 
 # Display the plot in Streamlit
 st.pyplot(fig)
-
