@@ -6,10 +6,6 @@ import joblib
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-# Load pre-trained model and scaler
-# model = joblib.load('/content/drive/MyDrive/DataScience/assignment/GB.joblib')  # Ensure this file exists
-# scaler = joblib.load('/content/drive/MyDrive/DataScience/assignment/scaler.joblib')  # Ensure this file exists
-
 st.title("Renewable Energy Consumption Prediction")
 st.write("Adjust the sliders to change the input features and see the impact on predicted energy consumption.")
 
